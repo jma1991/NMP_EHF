@@ -19,7 +19,7 @@ Define chunk options:
 knitr::opts_chunk$set(
   autodep    = TRUE,
   cache      = TRUE,
-  cache.path = "cache/10-human-annotation.Rmd/",
+  cache.path = "cache/10-human-integration.Rmd/",
   dev        = "png",
   error      = FALSE,
   message    = FALSE,

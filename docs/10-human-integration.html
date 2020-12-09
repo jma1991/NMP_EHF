@@ -462,7 +462,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -471,7 +471,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -483,7 +483,7 @@ div.tocify {
 <strong>Last updated:</strong> 2020-12-09
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>NMP_EHF_C/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -499,12 +499,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -571,16 +571,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjma1991NMPEHFCtreeb3f8573c77d12ba136e7a78f5da618fade8e60a0targetblankb3f8573a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/jma1991/NMP_EHF_C/tree/b3f8573c77d12ba136e7a78f5da618fade8e60a0" target="_blank">b3f8573</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjma1991NMPEHFCtreed22fee027c4a8a0dce958b59f87287f506427687targetblankd22fee0a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/jma1991/NMP_EHF_C/tree/d22fee027c4a8a0dce958b59f87287f506427687" target="_blank">d22fee0</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomjma1991NMPEHFCtreeb3f8573c77d12ba136e7a78f5da618fade8e60a0targetblankb3f8573a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomjma1991NMPEHFCtreed22fee027c4a8a0dce958b59f87287f506427687targetblankd22fee0a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/jma1991/NMP_EHF_C/tree/b3f8573c77d12ba136e7a78f5da618fade8e60a0" target="_blank">b3f8573</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/jma1991/NMP_EHF_C/tree/d22fee027c4a8a0dce958b59f87287f506427687" target="_blank">d22fee0</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -591,6 +591,9 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/cache/
+
+Unstaged changes:
+    Modified:   analysis/10-human-integration.Rmd
 
 </code></pre>
 <p>
@@ -629,6 +632,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/jma1991/NMP_EHF_C/40ac13ce928a10780eddb38bb30df093b6d5b4b0/docs/10-human-integration.html" target="_blank">40ac13c</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+<td>
+publish
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -680,7 +700,7 @@ publish
 <pre class="r"><code>knitr::opts_chunk$set(
   autodep    = TRUE,
   cache      = TRUE,
-  cache.path = &quot;cache/10-human-annotation.Rmd/&quot;,
+  cache.path = &quot;cache/10-human-integration.Rmd/&quot;,
   dev        = &quot;png&quot;,
   error      = FALSE,
   message    = FALSE,
@@ -765,6 +785,54 @@ HumanClusterLabels &lt;- aggregate(HumanClusterLabels, list(Cluster = sce$human$
         legend.position = c(0.01, 0.99),
         legend.justification = c(0, 1))</code></pre>
 <p><img src="figure/10-human-integration.Rmd/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-10-1">
+Past versions of unnamed-chunk-10-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-10-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/40ac13ce928a10780eddb38bb30df093b6d5b4b0/docs/figure/10-human-integration.Rmd/unnamed-chunk-10-1.png" target="_blank">40ac13c</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/10-human-integration.Rmd/unnamed-chunk-10-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Plot mouse celltype annotation:</p>
 <pre class="r"><code>ggcells(sce$mouse, aes(UMAP.1, UMAP.2, colour = celltype)) + 
   geom_point() + 
@@ -776,6 +844,54 @@ HumanClusterLabels &lt;- aggregate(HumanClusterLabels, list(Cluster = sce$human$
         legend.position = c(0.01, 0.99),
         legend.justification = c(0, 1))</code></pre>
 <p><img src="figure/10-human-integration.Rmd/unnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-11-1">
+Past versions of unnamed-chunk-11-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-11-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/40ac13ce928a10780eddb38bb30df093b6d5b4b0/docs/figure/10-human-integration.Rmd/unnamed-chunk-11-1.png" target="_blank">40ac13c</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/10-human-integration.Rmd/unnamed-chunk-11-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Plot human embryo cluster annotation:</p>
 <pre class="r"><code>ggcells(sce$human, aes(UMAP.1, UMAP.2, colour = Cluster)) + 
   geom_point(size = 0.5) + 
@@ -789,6 +905,54 @@ HumanClusterLabels &lt;- aggregate(HumanClusterLabels, list(Cluster = sce$human$
   theme(aspect.ratio = 1,
         legend.position = &quot;none&quot;)</code></pre>
 <p><img src="figure/10-human-integration.Rmd/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-12-1">
+Past versions of unnamed-chunk-12-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-12-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/40ac13ce928a10780eddb38bb30df093b6d5b4b0/docs/figure/10-human-integration.Rmd/unnamed-chunk-12-1.png" target="_blank">40ac13c</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/10-human-integration.Rmd/unnamed-chunk-12-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Plot human embryo origin annotation:</p>
 <pre class="r"><code>ggcells(sce$human, aes(UMAP.1, UMAP.2, colour = Origin)) + 
   geom_point(size = 0.5) + 
@@ -799,6 +963,54 @@ HumanClusterLabels &lt;- aggregate(HumanClusterLabels, list(Cluster = sce$human$
         legend.position = c(0.99, 0.01),
         legend.justification = c(1, 0))</code></pre>
 <p><img src="figure/10-human-integration.Rmd/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-13-1">
+Past versions of unnamed-chunk-13-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-13-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/40ac13ce928a10780eddb38bb30df093b6d5b4b0/docs/figure/10-human-integration.Rmd/unnamed-chunk-13-1.png" target="_blank">40ac13c</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/10-human-integration.Rmd/unnamed-chunk-13-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="integration" class="section level2">
 <h2>Integration</h2>
@@ -855,6 +1067,54 @@ mnn &lt;- runUMAP(mnn, n_neighbors = 20, min_dist = 0.5, dimred = &quot;correcte
         legend.position = c(0.99, 0.01),
         legend.justification = c(1, 0))</code></pre>
 <p><img src="figure/10-human-integration.Rmd/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-23-1">
+Past versions of unnamed-chunk-23-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-23-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/40ac13ce928a10780eddb38bb30df093b6d5b4b0/docs/figure/10-human-integration.Rmd/unnamed-chunk-23-1.png" target="_blank">40ac13c</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/10-human-integration.Rmd/unnamed-chunk-23-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Plot merged origin annotation:</p>
 <pre class="r"><code>ggcells(mnn, aes(UMAP.1, UMAP.2, colour = Origin)) + 
   geom_point(size = 0.5) + 
@@ -865,6 +1125,54 @@ mnn &lt;- runUMAP(mnn, n_neighbors = 20, min_dist = 0.5, dimred = &quot;correcte
         legend.position = c(0.99, 0.01),
         legend.justification = c(1, 0))</code></pre>
 <p><img src="figure/10-human-integration.Rmd/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-24-1">
+Past versions of unnamed-chunk-24-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-24-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/40ac13ce928a10780eddb38bb30df093b6d5b4b0/docs/figure/10-human-integration.Rmd/unnamed-chunk-24-1.png" target="_blank">40ac13c</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/10-human-integration.Rmd/unnamed-chunk-24-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Plot merged cluster annotation:</p>
 <pre class="r"><code>ggcells(mnn, aes(UMAP.1, UMAP.2, colour = Cluster)) + 
   geom_point(data = makePerCellDF(mnn, use.coldata = FALSE, use.dimred = &quot;UMAP&quot;), colour = &quot;gainsboro&quot;, size = 1) + 
@@ -876,6 +1184,54 @@ mnn &lt;- runUMAP(mnn, n_neighbors = 20, min_dist = 0.5, dimred = &quot;correcte
         legend.title = element_blank(),
         strip.background = element_blank())</code></pre>
 <p><img src="figure/10-human-integration.Rmd/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-25-1">
+Past versions of unnamed-chunk-25-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-25-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/40ac13ce928a10780eddb38bb30df093b6d5b4b0/docs/figure/10-human-integration.Rmd/unnamed-chunk-25-1.png" target="_blank">40ac13c</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/10-human-integration.Rmd/unnamed-chunk-25-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="summary" class="section level2">
 <h2>Summary</h2>
@@ -956,16 +1312,17 @@ loaded via a namespace (and not attached):
  [77] tidyselect_1.1.0              magrittr_2.0.1               
  [79] R6_2.5.0                      generics_0.1.0               
  [81] DelayedArray_0.16.0           DBI_1.1.0                    
- [83] pillar_1.4.7                  withr_2.3.0                  
- [85] RCurl_1.98-1.2                tibble_3.0.4                 
- [87] crayon_1.3.4                  BiocFileCache_1.14.0         
- [89] rmarkdown_2.5                 viridis_0.5.1                
- [91] locfit_1.5-9.4                grid_4.0.2                   
- [93] FNN_1.1.3                     blob_1.2.1                   
- [95] git2r_0.27.1                  digest_0.6.27                
- [97] xtable_1.8-4                  httpuv_1.5.4                 
- [99] munsell_0.5.0                 beeswarm_0.2.3               
-[101] viridisLite_0.3.0             vipor_0.4.5                  </code></pre>
+ [83] pillar_1.4.7                  whisker_0.4                  
+ [85] withr_2.3.0                   RCurl_1.98-1.2               
+ [87] tibble_3.0.4                  crayon_1.3.4                 
+ [89] BiocFileCache_1.14.0          rmarkdown_2.5                
+ [91] viridis_0.5.1                 locfit_1.5-9.4               
+ [93] grid_4.0.2                    FNN_1.1.3                    
+ [95] blob_1.2.1                    git2r_0.27.1                 
+ [97] digest_0.6.27                 xtable_1.8-4                 
+ [99] httpuv_1.5.4                  munsell_0.5.0                
+[101] beeswarm_0.2.3                viridisLite_0.3.0            
+[103] vipor_0.4.5                  </code></pre>
 </div>
 </div>
 
