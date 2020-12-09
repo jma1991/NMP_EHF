@@ -109,7 +109,7 @@ for (n in names(sig)) {
 Identify potential doublet cells based on simulations of putative doublet expression profiles:
 
 ```{r}
-set.seed(208249573)
+set.seed(829298391)
 
 dim <- reducedDim(sce)
 

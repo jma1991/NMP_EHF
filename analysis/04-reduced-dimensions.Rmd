@@ -50,7 +50,7 @@ sce <- readRDS("output/03-feature-selection.rds")
 Perform a principal components analysis (PCA) on the expression data:
 
 ```{r}
-set.seed(897926970)
+set.seed(441217560)
 
 sce <- runPCA(sce, subset_row = rowData(sce)$selected, BSPARAM = ExactParam())
 ```
@@ -96,7 +96,7 @@ ggplot(dat, aes(index, total)) +
 Retain all PCs until the percentage of total variation explained reaches a given threshold based on the technical noise:
 
 ```{r}
-set.seed(39517224)
+set.seed(250798070)
 
 dec <- metadata(sce)$modelGeneVarWithSpikes
 
@@ -151,7 +151,7 @@ ggplot(dat, aes(n.pcs, n.clusters)) +
 Choose number of PCs to retain from the above analyses:
 
 ```{r}
-num <- 5
+num <- 3
 
 len <- seq_len(num)
 
@@ -200,7 +200,7 @@ arg <- expand.grid(
 
 plt <- apply(arg, 1, function(x) {
 
-  set.seed(628484485)
+  set.seed(344913786)
 
   run <- runTSNE(sce, dimred = "PCA", perplexity = x[1], max_iter = x[2])
 
@@ -219,9 +219,9 @@ wrap_plots(plt, nrow = 6, ncol = 6, byrow = FALSE)
 Select optimal perplexity value and number of iterations:
 
 ```{r}
-set.seed(628484485)
+set.seed(344913786)
 
-sce <- runTSNE(sce, dimred = "PCA", perplexity = 14, max_iter = 700)
+sce <- runTSNE(sce, dimred = "PCA", perplexity = 28, max_iter = 500)
 ```
 
 ## UMAP
@@ -246,7 +246,7 @@ arg <- expand.grid(
 
 plt <- apply(arg, 1, function(x) {
 
-  set.seed(397619765)
+  set.seed(859768975)
 
   run <- runUMAP(sce, dimred = "PCA", n_neighbors = x[1], min_dist = x[2])
 
@@ -265,9 +265,9 @@ wrap_plots(plt, nrow = 6, ncol = 6, byrow = FALSE)
 Select optimal number of nearest neighbors:
 
 ```{r}
-set.seed(397619765)
+set.seed(859768975)
 
-sce <- runUMAP(sce, dimred = "PCA", n_neighbors = 36, min_dist = 0.2)
+sce <- runUMAP(sce, dimred = "PCA", n_neighbors = 35, min_dist = 0.4)
 ```
 
 ## Variables {.tabset}

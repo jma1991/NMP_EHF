@@ -31,6 +31,7 @@ Load required packages:
 
 ```{r}
 library(BiocSingular)
+library(EnsDb.Mmusculus.v79)
 library(org.Mm.eg.db)
 library(eulerr)
 library(pheatmap)
@@ -65,7 +66,9 @@ rowData(sce)$blacklist[idx] <- TRUE
 Append Y chromosome genes to blacklist:
 
 ```{r}
-idx <- which(seqnames(sce) == "Y")
+chr <- mapIds(EnsDb.Mmusculus.v79, keys = rowData(sce)$gene_id, keytype = "GENEID", column = "SEQNAME")
+
+idx <- which(chr == "Y")
 
 rowData(sce)$blacklist[idx] <- TRUE
 ```
@@ -73,7 +76,9 @@ rowData(sce)$blacklist[idx] <- TRUE
 Append MT chromosome genes to blacklist:
 
 ```{r}
-idx <- which(seqnames(sce) == "MT")
+chr <- mapIds(EnsDb.Mmusculus.v79, keys = rowData(sce)$gene_id, keytype = "GENEID", column = "SEQNAME")
+
+idx <- which(chr == "MT")
 
 rowData(sce)$blacklist[idx] <- TRUE
 ```
@@ -392,7 +397,7 @@ dec <- c("modelGeneVar", "modelGeneCV2", "modelGeneVarWithSpikes", "modelGeneCV2
 ```{r, fig.height = 11, fig.width = 10}
 plt <- lapply(dec, function(x) {
   
-  set.seed(198432021)
+  set.seed(556875773)
   
   hvg <- metadata(sce)[[x]]$hvg
   
@@ -410,7 +415,7 @@ patchwork::wrap_plots(plt, ncol = 2)
 ```{r, fig.height = 11, fig.width = 10}
 plt <- lapply(dec, function(x) {
   
-  set.seed(636818069)
+  set.seed(779593126)
   
   hvg <- metadata(sce)[[x]]$hvg
   
@@ -430,7 +435,7 @@ patchwork::wrap_plots(plt, ncol = 2)
 ```{r, fig.height = 11, fig.width = 10}
 plt <- lapply(dec, function(x) {
   
-  set.seed(769514741)
+  set.seed(614828532)
   
   hvg <- metadata(sce)[[x]]$hvg
   

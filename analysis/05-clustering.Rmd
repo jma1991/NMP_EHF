@@ -172,7 +172,7 @@ patchwork::wrap_plots(plt)
 Perform k-means clustering on the PCA matrix:
 
 ```{r}
-set.seed(80593233)
+set.seed(731832762)
 
 dim <- reducedDim(sce, "PCA")
 
@@ -196,7 +196,7 @@ ggplot(dat, aes(var, val)) +
 Select optimal number of clusters:
 
 ```{r}
-set.seed(80593233)
+set.seed(731832762)
 
 cls <- kmeans(dim, centers = num)
 
@@ -206,7 +206,7 @@ sce$cluster_kmeans <- factor(cls$cluster)
 Check the number of clusters before plotting:
 
 ```{r}
-run <- ifelse(num > 1, TRUE, FALSE)
+run <- ifelse(num > 2, TRUE, FALSE)
 ```
 
 Plot the distances between clusters using their centroids:

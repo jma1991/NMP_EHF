@@ -27,16 +27,22 @@ knitr::opts_chunk$set(
 )
 ```
 
-Load required packages:
+Load Bioconductor packages:
 
 ```{r}
 library(BiocSingular)
+library(EnsDb.Mmusculus.v79)
 library(SingleCellExperiment)
+library(scater)
+library(scran)
+```
+
+Load CRAN packages:
+
+```{r}
 library(eulerr)
 library(patchwork)
 library(robustbase)
-library(scater)
-library(scran)
 ```
 
 Read experiment data:
@@ -45,16 +51,52 @@ Read experiment data:
 sce <- readRDS("data/salmon-quant.rds")
 ```
 
-Make feature names unique:
+Read and parse column data:
 
 ```{r}
-rownames(sce) <- uniquifyFeatureNames(rowData(sce)$gene_id, rowData(sce)$gene_name)
+dat <- read.csv("data/sample-units.csv")
+
+dat <- split(dat, dat$sample)
+
+dat <- lapply(dat, function(x) {
+  
+  d <- data.frame(
+    sample = paste("NMP", "EHF", "C", x$position, sep = "_"),
+    region = "NMP",
+    stage = "EHF",
+    index = "C",
+    plate = paste("NMP", "EHF", "C", sep = "_"),
+    position = x$position,
+    instrument = x$instrument,
+    run = x$run,
+    flowcell = x$flowcell,
+    i7 = x$index7,
+    i5 = x$index5,
+    lane = paste(x$lane, collapse = ","),
+    read1 = paste(x$file, collapse = ",")
+  )
+  
+  d <- unique(d)
+
+})
+
+dat <- do.call(rbind, dat)
+
+dat <- dat[sce$SM, ]
+
+colData(sce) <- DataFrame(dat)
 ```
 
 Make sample names unique:
 
 ```{r}
-colnames(sce) <- colData(sce)$sample
+colnames(sce) <- sce$sample
+```
+
+Make feature names unique:
+
+```{r}
+rownames(sce) <- uniquifyFeatureNames(rowData(sce)$gene_id, rowData(sce)$gene_name)
 ```
 
 ## Exploration
@@ -63,10 +105,12 @@ We begin by exploring the dataset which contains `r ncol(sce)` cells and `r nrow
 
 ## Metrics
 
-Identify mitochondrial and reporter genes:
+Identify mitochondrial genes:
 
 ```{r}
-mit <- which(seqnames(sce) == "MT")
+chr <- mapIds(EnsDb.Mmusculus.v79, keys = rowData(sce)$gene_id, keytype = "GENEID", column = "SEQNAME")
+
+mit <- which(chr == "MT")
 ```
 
 Compute QC metrics for each cell:
@@ -93,7 +137,7 @@ wrap_plots(
 Calculate dimenionality reduction data:
 
 ```{r}
-set.seed(350218714)
+set.seed(352568044)
 sce <- computeLibraryFactors(sce)
 sce <- logNormCounts(sce)
 sce <- runPCA(sce, BSPARAM = ExactParam())
@@ -149,10 +193,10 @@ The first approach to identifying low-quality cells is to apply manual threshold
 
 ```{r}
 dat <- DataFrame(
-  low_lib_size = sce$sum < 1e+05,
-  low_n_features = sce$detected < 1000,
-  high_subsets_MT_percent = sce$subsets_MT_percent > 20,
-  high_altexps_ERCC_percent = sce$altexps_ERCC_percent > 25
+  low_lib_size = sce$sum < 1000000,
+  low_n_features = sce$detected < 5000,
+  high_subsets_MT_percent = sce$subsets_MT_percent > 10,
+  high_altexps_ERCC_percent = sce$altexps_ERCC_percent > 10
 )
 
 sce$manual_discard <- dat$low_lib_size | dat$low_n_features | dat$high_subsets_MT_percent | dat$high_altexps_ERCC_percent

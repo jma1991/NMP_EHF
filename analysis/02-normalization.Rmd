@@ -59,7 +59,7 @@ Evaluate different normalization methods
 Compute expression values from raw counts without any normalization:
 
 ```{r}
-set.seed(855429129)
+set.seed(302141926)
 
 sizeFactors(sce) <- 1
 
@@ -115,7 +115,7 @@ wrap_plots(plt, ncol = 2)
 Compute expression values from raw counts by scaling with library size factors:
 
 ```{r}
-set.seed(855429129)
+set.seed(302141926)
 
 sizeFactors(sce) <- librarySizeFactors(sce)
 
@@ -171,7 +171,7 @@ wrap_plots(plt, ncol = 2)
 Compute expression values from raw counts by scaling with "deconvolved" size factors:
 
 ```{r}
-set.seed(855429129)
+set.seed(302141926)
 
 num <- ifelse(ncol(sce) < 100, ncol(sce), 100)
 
@@ -231,7 +231,7 @@ wrap_plots(plt, ncol = 2)
 Compute expression values from raw counts by scaling with spike-in size factors:
 
 ```{r}
-set.seed(855429129)
+set.seed(302141926)
 
 sce <- computeSpikeFactors(sce, "ERCC")
 
@@ -287,7 +287,7 @@ wrap_plots(plt, ncol = 2)
 Compute expression values from raw counts by downsampling:
 
 ```{r}
-set.seed(855429129)
+set.seed(302141926)
 
 sizeFactors(sce) <- librarySizeFactors(sce)
 
@@ -343,7 +343,7 @@ wrap_plots(plt, ncol = 2)
 Apply the chosen normalization to the experiment data:
 
 ```{r}
-set.seed(855429129)
+set.seed(302141926)
 
 num <- ifelse(ncol(sce) < 100, ncol(sce), 100)
 

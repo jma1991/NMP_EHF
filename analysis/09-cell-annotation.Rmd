@@ -124,7 +124,7 @@ library(MouseGastrulationData)
 Subset atlas sample metadata by embryonic stage:
 
 ```{r cache = FALSE}
-AtlasSampleMetadata <- subset(AtlasSampleMetadata, stage %in% c("E7.25", "E7.5", "E7.75", "E8.0", "E8.25"))
+AtlasSampleMetadata <- subset(AtlasSampleMetadata, stage %in% c("E7.25", "E7.5", "E7.75", "E8.0"))
 ```
 
 Retrieve processed samples from embryo atlas data:
