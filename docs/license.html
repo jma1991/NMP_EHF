@@ -354,15 +354,18 @@ $(document).ready(function () {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Mouse integration</li>
+    <li class="dropdown-header">Atlas integration</li>
     <li>
-      <a href="10-mouse-integration.html"></a>
+      <a href="10-atlas-integration.html"></a>
     </li>
     <li class="dropdown-header">Human integration</li>
     <li>
       <a href="11-human-integration.html"></a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="interactive.html">Interactive</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -438,16 +441,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjma1991NMPEHFCtree63efc0223023da48f471ae7be9955fb6ed91d699targetblank63efc02a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/jma1991/NMP_EHF_C/tree/63efc0223023da48f471ae7be9955fb6ed91d699" target="_blank">63efc02</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjma1991NMPEHFCtree829e8d1f38ff18f442867af68fe7b1680a6dc60ftargetblank829e8d1a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/jma1991/NMP_EHF_C/tree/829e8d1f38ff18f442867af68fe7b1680a6dc60f" target="_blank">829e8d1</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomjma1991NMPEHFCtree63efc0223023da48f471ae7be9955fb6ed91d699targetblank63efc02a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomjma1991NMPEHFCtree829e8d1f38ff18f442867af68fe7b1680a6dc60ftargetblank829e8d1a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/jma1991/NMP_EHF_C/tree/63efc0223023da48f471ae7be9955fb6ed91d699" target="_blank">63efc02</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/jma1991/NMP_EHF_C/tree/829e8d1f38ff18f442867af68fe7b1680a6dc60f" target="_blank">829e8d1</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -461,12 +464,21 @@ Ignored files:
     Ignored:    analysis/cache/
 
 Untracked files:
+    Untracked:  analysis/interactive.Rmd
+    Untracked:  code/EmbryoColourPalette.R
+    Untracked:  code/Mode.R
     Untracked:  code/cleanEmbryoAtlasData.R
     Untracked:  code/cleanSCE.R
+    Untracked:  code/coolmap.R
+    Untracked:  code/dist_clusters_diag.R
+    Untracked:  code/reorder_within.R
     Untracked:  code/splitByCol.R
 
 Unstaged changes:
+    Modified:   _workflowr.R
     Deleted:    analysis/10-human-integration.Rmd
+    Deleted:    analysis/10-mouse-integration.Rmd
+    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -505,6 +517,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/829e8d1f38ff18f442867af68fe7b1680a6dc60f/analysis/license.Rmd" target="_blank">829e8d1</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2021-01-28
+</td>
+<td>
+wflow_publish(files = “analysis/license.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/jma1991/NMP_EHF_C/5aa46b74ed277da497e510ffb546366304e90d84/docs/license.html" target="_blank">5aa46b7</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2021-01-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -580,9 +626,7 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<p>What license are you using for your code? See <a href="http://choosealicense.com/">choosealicense.com</a> for help deciding. It’s a convention to save a file <code>LICENSE</code> in the root of your Git repo that contains the license text.</p>
-<p>What license are you using for the written content on your site? It is traditional to choose a <a href="https://creativecommons.org/choose/">Creative Commons</a> license for this type of content.</p>
-<p>How should others cite your work? It’s a convention to save a file <code>CITATION</code> in the root of your Git repo that contains the citation information.</p>
+<p>The code on this site is covered by the <a href="https://choosealicense.com/licenses/mit/">MIT</a> license and the written content is covered by a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons CC BY 4.0</a> license.</p>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
