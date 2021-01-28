@@ -256,7 +256,9 @@ patchwork::wrap_plots(
 The next approach is to identify cells that are outliers based on the median absolute deviation for the QC metrics:
 
 ```{r}
-dat <- quickPerCellQC(sce, percent_subsets = c("subsets_MT_percent", "altexps_ERCC_percent"))
+dat <- colData(sce)
+
+dat <- quickPerCellQC(dat, sub.fields = c("subsets_MT_percent", "altexps_ERCC_percent"))
 
 sce$adaptive_discard <- dat$discard
 ```
