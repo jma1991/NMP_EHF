@@ -14,6 +14,7 @@
 
 <title>Dimensionality reduction</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -28,8 +29,6 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -40,6 +39,8 @@ div.section {
   padding-top: 12px;
 }
 </style>
+
+
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -94,6 +95,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 
 
@@ -429,17 +431,21 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Mouse integration</li>
+    <li>
+      <a href="10-mouse-integration.html"></a>
+    </li>
     <li class="dropdown-header">Human integration</li>
     <li>
-      <a href="10-human-integration.html"></a>
+      <a href="11-human-integration.html"></a>
     </li>
   </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jma1991/NMP_EHF">
-    <span class="fa fa-github"></span>
+  <a href="https://github.com/jma1991/NMP_EHF_C">
+    <span class="fas fa-github"></span>
      
     Source code
   </a>
@@ -455,7 +461,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Dimensionality reduction</h1>
 <h4 class="author">James Ashmore</h4>
-<h4 class="date">09 December, 2020</h4>
+<h4 class="date">28 January, 2021</h4>
 
 </div>
 
@@ -480,7 +486,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-12-09
+<strong>Last updated:</strong> 2021-01-28
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -528,7 +534,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSeedstrongcodesetseed94526958code" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(94526958)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(94526958)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
 </div>
 </div>
 </div>
@@ -571,16 +577,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjma1991NMPEHFCtreeb3f8573c77d12ba136e7a78f5da618fade8e60a0targetblankb3f8573a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/jma1991/NMP_EHF_C/tree/b3f8573c77d12ba136e7a78f5da618fade8e60a0" target="_blank">b3f8573</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomjma1991NMPEHFCtreecb0e0b39949bb21e9b2ddb61b6cbe5a6e93c64c3targetblankcb0e0b3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/jma1991/NMP_EHF_C/tree/cb0e0b39949bb21e9b2ddb61b6cbe5a6e93c64c3" target="_blank">cb0e0b3</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomjma1991NMPEHFCtreeb3f8573c77d12ba136e7a78f5da618fade8e60a0targetblankb3f8573a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomjma1991NMPEHFCtreecb0e0b39949bb21e9b2ddb61b6cbe5a6e93c64c3targetblankcb0e0b3a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/jma1991/NMP_EHF_C/tree/b3f8573c77d12ba136e7a78f5da618fade8e60a0" target="_blank">b3f8573</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/jma1991/NMP_EHF_C/tree/cb0e0b39949bb21e9b2ddb61b6cbe5a6e93c64c3" target="_blank">cb0e0b3</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -590,7 +596,20 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    analysis/.DS_Store
     Ignored:    analysis/cache/
+
+Untracked files:
+    Untracked:  code/cleanEmbryoAtlasData.R
+    Untracked:  code/cleanSCE.R
+    Untracked:  code/splitByCol.R
+
+Unstaged changes:
+    Modified:   _workflowr.R
+    Deleted:    analysis/10-human-integration.Rmd
+    Modified:   analysis/about.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/license.Rmd
 
 </code></pre>
 <p>
@@ -629,6 +648,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/jma1991/NMP_EHF_C/40ac13ce928a10780eddb38bb30df093b6d5b4b0/docs/04-reduced-dimensions.html" target="_blank">40ac13c</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+<td>
+publish
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -746,6 +782,43 @@ ggplot(dat, aes(index, total)) +
   scale_y_continuous(n.breaks = 10, limits = c(0, NA)) +
   theme_minimal()</code></pre>
 <p><img src="figure/04-reduced-dimensions.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
+Past versions of unnamed-chunk-7-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/04-reduced-dimensions.Rmd/unnamed-chunk-7-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="technical" class="section level3">
 <h3>Technical</h3>
@@ -770,6 +843,43 @@ ggplot(dat, aes(index, total)) +
   labs(x = &quot;PC&quot;, y = &quot;Cumulative variance (%)&quot;) +
   theme_minimal()</code></pre>
 <p><img src="figure/04-reduced-dimensions.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
+Past versions of unnamed-chunk-9-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-9-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/04-reduced-dimensions.Rmd/unnamed-chunk-9-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="structure" class="section level3">
 <h3>Structure</h3>
@@ -789,6 +899,43 @@ ggplot(dat, aes(n.pcs, n.clusters)) +
   labs(x = &quot;PC&quot;, y = &quot;Number of clusters&quot;) +
   theme_minimal()</code></pre>
 <p><img src="figure/04-reduced-dimensions.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-11-1">
+Past versions of unnamed-chunk-11-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-11-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/04-reduced-dimensions.Rmd/unnamed-chunk-11-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="selection" class="section level3">
 <h3>Selection</h3>
@@ -803,6 +950,43 @@ reducedDim(sce, &quot;PCA&quot;) &lt;- dim[, len]</code></pre>
 <p>Plot scatterplot matrix of retained PCs:</p>
 <pre class="r"><code>plotPCA(sce, colour_by = &quot;cluster&quot;, ncomponents = num) + theme(legend.position = &quot;none&quot;)</code></pre>
 <p><img src="figure/04-reduced-dimensions.Rmd/unnamed-chunk-13-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-13-1">
+Past versions of unnamed-chunk-13-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-13-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/04-reduced-dimensions.Rmd/unnamed-chunk-13-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Cluster cells to help examine effect of TSNE and UMAP hyper-parameters:</p>
 <pre class="r"><code>snn &lt;- buildSNNGraph(sce, use.dimred = &quot;PCA&quot;)
 
@@ -845,6 +1029,43 @@ plt &lt;- apply(arg, 1, function(x) {
 
 wrap_plots(plt, nrow = 6, ncol = 6, byrow = FALSE)</code></pre>
 <p><img src="figure/04-reduced-dimensions.Rmd/unnamed-chunk-15-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-1">
+Past versions of unnamed-chunk-15-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-15-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/04-reduced-dimensions.Rmd/unnamed-chunk-15-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="calculate-tsne" class="section level3">
 <h3>Calculate TSNE</h3>
@@ -886,6 +1107,43 @@ plt &lt;- apply(arg, 1, function(x) {
 
 wrap_plots(plt, nrow = 6, ncol = 6, byrow = FALSE)</code></pre>
 <p><img src="figure/04-reduced-dimensions.Rmd/unnamed-chunk-17-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-17-1">
+Past versions of unnamed-chunk-17-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-17-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/04-reduced-dimensions.Rmd/unnamed-chunk-17-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="calculate-umap" class="section level3">
 <h3>Calculate UMAP</h3>
@@ -896,7 +1154,7 @@ sce &lt;- runUMAP(sce, dimred = &quot;PCA&quot;, n_neighbors = 35, min_dist = 0.
 </div>
 </div>
 <div id="variables" class="section level2 tabset">
-<h2>Variables</h2>
+<h2 class="tabset">Variables</h2>
 <div id="pca-1" class="section level3">
 <h3>PCA</h3>
 <pre class="r"><code>var &lt;- c(&quot;sum&quot;, &quot;detected&quot;, &quot;subsets_MT_percent&quot;, &quot;altexps_ERCC_percent&quot;)
@@ -905,6 +1163,43 @@ plt &lt;- lapply(var, function(x) plotPCA(sce, colour_by = x))
 
 patchwork::wrap_plots(plt, ncol = 2)</code></pre>
 <p><img src="figure/04-reduced-dimensions.Rmd/unnamed-chunk-19-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-19-1">
+Past versions of unnamed-chunk-19-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-19-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/04-reduced-dimensions.Rmd/unnamed-chunk-19-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="tsne-1" class="section level3">
 <h3>TSNE</h3>
@@ -914,6 +1209,43 @@ plt &lt;- lapply(var, function(x) plotTSNE(sce, colour_by = x))
 
 patchwork::wrap_plots(plt, ncol = 2)</code></pre>
 <p><img src="figure/04-reduced-dimensions.Rmd/unnamed-chunk-20-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-20-1">
+Past versions of unnamed-chunk-20-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-20-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/04-reduced-dimensions.Rmd/unnamed-chunk-20-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="umap-1" class="section level3">
 <h3>UMAP</h3>
@@ -923,6 +1255,43 @@ plt &lt;- lapply(var, function(x) plotUMAP(sce, colour_by = x))
 
 patchwork::wrap_plots(plt, ncol = 2)</code></pre>
 <p><img src="figure/04-reduced-dimensions.Rmd/unnamed-chunk-21-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-21-1">
+Past versions of unnamed-chunk-21-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-21-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/jma1991/NMP_EHF_C/blob/87cba3a2d74a5cd0ae6f6535aab3b64fcf29b523/docs/figure/04-reduced-dimensions.Rmd/unnamed-chunk-21-1.png" target="_blank">87cba3a</a>
+</td>
+<td>
+James Ashmore
+</td>
+<td>
+2020-12-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="summary" class="section level2">
@@ -938,7 +1307,7 @@ patchwork::wrap_plots(plt, ncol = 2)</code></pre>
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.0.2 (2020-06-22)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.6
+Running under: macOS Catalina 10.15.7
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
@@ -952,68 +1321,72 @@ attached base packages:
 [8] methods   base     
 
 other attached packages:
- [1] scran_1.16.0                scater_1.16.2              
- [3] ggplot2_3.3.2               SingleCellExperiment_1.10.1
- [5] SummarizedExperiment_1.18.2 DelayedArray_0.14.1        
- [7] matrixStats_0.57.0          Biobase_2.48.0             
- [9] GenomicRanges_1.40.0        GenomeInfoDb_1.24.2        
-[11] IRanges_2.22.2              S4Vectors_0.26.1           
-[13] BiocGenerics_0.34.0         pheatmap_1.0.12            
-[15] patchwork_1.0.1             BiocSingular_1.4.0         
+ [1] scran_1.18.3                scater_1.18.3              
+ [3] ggplot2_3.3.3               SingleCellExperiment_1.12.0
+ [5] SummarizedExperiment_1.20.0 Biobase_2.50.0             
+ [7] GenomicRanges_1.42.0        GenomeInfoDb_1.26.2        
+ [9] IRanges_2.24.1              S4Vectors_0.28.1           
+[11] BiocGenerics_0.36.0         MatrixGenerics_1.2.0       
+[13] matrixStats_0.57.0          pheatmap_1.0.12            
+[15] patchwork_1.1.1             BiocSingular_1.6.0         
 [17] workflowr_1.6.2            
 
 loaded via a namespace (and not attached):
   [1] Rtsne_0.15                ggbeeswarm_0.6.0         
-  [3] colorspace_1.4-1          ellipsis_0.3.1           
-  [5] class_7.3-17              mclust_5.4.6             
-  [7] rprojroot_1.3-2           XVector_0.28.0           
-  [9] BiocNeighbors_1.6.0       fs_1.5.0                 
- [11] rstudioapi_0.11           farver_2.0.3             
- [13] ggrepel_0.8.2             RSpectra_0.16-0          
- [15] codetools_0.2-16          leaps_3.1                
- [17] knitr_1.30                mmand_1.6.1              
- [19] mda_0.5-2                 cluster_2.1.0            
- [21] png_0.1-7                 uwot_0.1.8               
- [23] compiler_4.0.2            dqrng_0.2.1              
- [25] backports_1.1.10          Matrix_1.2-18            
- [27] limma_3.44.3              later_1.1.0.1            
- [29] tcltk2_1.2-11             htmltools_0.5.0          
- [31] tools_4.0.2               rsvd_1.0.3               
- [33] igraph_1.2.5              gtable_0.3.0             
- [35] glue_1.4.2                GenomeInfoDbData_1.2.3   
- [37] dplyr_1.0.2               FactoMineR_2.3           
- [39] Rcpp_1.0.5                vctrs_0.3.4              
- [41] DelayedMatrixStats_1.10.1 xfun_0.18                
- [43] stringr_1.4.0             tkrplot_0.0-24           
- [45] lifecycle_0.2.0           irlba_2.3.3              
- [47] statmod_1.4.34            factoextra_1.0.7         
- [49] edgeR_3.30.3              zlibbioc_1.34.0          
- [51] MASS_7.3-53               scales_1.1.1             
- [53] conclust_1.1              promises_1.1.1           
- [55] RColorBrewer_1.1-2        yaml_2.2.1               
- [57] gridExtra_2.3             reshape_0.8.8            
- [59] stringi_1.5.3             corrplot_0.84            
- [61] RclusTool_0.91.3          randomForest_4.6-14      
- [63] e1071_1.7-3               BiocParallel_1.22.0      
- [65] rlang_0.4.7               pkgconfig_2.0.3          
- [67] bitops_1.0-6              evaluate_0.14            
- [69] lattice_0.20-41           purrr_0.3.4              
- [71] labeling_0.3              cowplot_1.1.0            
- [73] tidyselect_1.1.0          plyr_1.8.6               
- [75] magrittr_1.5              R6_2.4.1                 
- [77] generics_0.0.2            pillar_1.4.6             
- [79] whisker_0.4               withr_2.3.0              
- [81] scatterplot3d_0.3-41      RCurl_1.98-1.2           
- [83] sp_1.4-2                  nnet_7.3-14              
- [85] tibble_3.0.3              crayon_1.3.4             
- [87] rmarkdown_2.4             viridis_0.5.1            
- [89] jpeg_0.1-8.1              locfit_1.5-9.4           
- [91] grid_4.0.2                FNN_1.1.3                
- [93] git2r_0.27.1              digest_0.6.25            
- [95] flashClust_1.01-2         httpuv_1.5.4             
- [97] munsell_0.5.0             beeswarm_0.2.3           
- [99] viridisLite_0.3.0         vipor_0.4.5              
-[101] tcltk_4.0.2              </code></pre>
+  [3] colorspace_2.0-0          ellipsis_0.3.1           
+  [5] class_7.3-18              mclust_5.4.7             
+  [7] rprojroot_2.0.2           scuttle_1.0.4            
+  [9] bluster_1.0.0             XVector_0.30.0           
+ [11] BiocNeighbors_1.8.2       fs_1.5.0                 
+ [13] rstudioapi_0.13           farver_2.0.3             
+ [15] ggrepel_0.9.1             DT_0.17                  
+ [17] RSpectra_0.16-0           codetools_0.2-18         
+ [19] leaps_3.1                 sparseMatrixStats_1.2.0  
+ [21] knitr_1.30                mmand_1.6.1              
+ [23] mda_0.5-2                 cluster_2.1.0            
+ [25] png_0.1-7                 uwot_0.1.10              
+ [27] compiler_4.0.2            dqrng_0.2.1              
+ [29] assertthat_0.2.1          Matrix_1.3-2             
+ [31] limma_3.46.0              later_1.1.0.1            
+ [33] tcltk2_1.2-11             htmltools_0.5.1.1        
+ [35] tools_4.0.2               rsvd_1.0.3               
+ [37] igraph_1.2.6              gtable_0.3.0             
+ [39] glue_1.4.2                GenomeInfoDbData_1.2.4   
+ [41] dplyr_1.0.3               FactoMineR_2.4           
+ [43] Rcpp_1.0.6                vctrs_0.3.6              
+ [45] DelayedMatrixStats_1.12.2 xfun_0.20                
+ [47] stringr_1.4.0             beachmat_2.6.4           
+ [49] tkrplot_0.0-24            lifecycle_0.2.0          
+ [51] irlba_2.3.3               statmod_1.4.35           
+ [53] factoextra_1.0.7          edgeR_3.32.1             
+ [55] zlibbioc_1.36.0           MASS_7.3-53              
+ [57] scales_1.1.1              conclust_1.1             
+ [59] promises_1.1.1            RColorBrewer_1.1-2       
+ [61] yaml_2.2.1                gridExtra_2.3            
+ [63] reshape_0.8.8             stringi_1.5.3            
+ [65] randomForest_4.6-14       corrplot_0.84            
+ [67] RclusTool_0.91.3          e1071_1.7-4              
+ [69] BiocParallel_1.24.1       rlang_0.4.10             
+ [71] pkgconfig_2.0.3           bitops_1.0-6             
+ [73] evaluate_0.14             lattice_0.20-41          
+ [75] purrr_0.3.4               labeling_0.4.2           
+ [77] htmlwidgets_1.5.3         cowplot_1.1.1            
+ [79] tidyselect_1.1.0          plyr_1.8.6               
+ [81] magrittr_2.0.1            R6_2.5.0                 
+ [83] generics_0.1.0            DelayedArray_0.16.1      
+ [85] DBI_1.1.1                 pillar_1.4.7             
+ [87] whisker_0.4               withr_2.4.1              
+ [89] sp_1.4-5                  nnet_7.3-15              
+ [91] scatterplot3d_0.3-41      RCurl_1.98-1.2           
+ [93] tibble_3.0.5              crayon_1.3.4             
+ [95] rmarkdown_2.6             jpeg_0.1-8.1             
+ [97] viridis_0.5.1             locfit_1.5-9.4           
+ [99] grid_4.0.2                FNN_1.1.3                
+[101] git2r_0.28.0              digest_0.6.27            
+[103] flashClust_1.01-2         httpuv_1.5.5             
+[105] munsell_0.5.0             beeswarm_0.2.3           
+[107] viridisLite_0.3.0         vipor_0.4.5              
+[109] tcltk_4.0.2              </code></pre>
 </div>
 </div>
 
@@ -1029,6 +1402,8 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
+
+
 
 
 </div>
