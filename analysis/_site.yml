@@ -29,10 +29,10 @@ navbar:
     - href: 09-cell-annotation.html
   - text: Analysis
     menu:
-    - text: Mouse integration
-    - href: 10-mouse-integration.html
-    - text: Human integration
-    - href: 11-human-integration.html
+    - text: Atlas integration
+    - href: 10-atlas-integration.html
+  - text: Interactive
+    href: interactive.html
   right:
   - icon: fa-github
     text: Source code
