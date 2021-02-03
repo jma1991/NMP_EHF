@@ -12,6 +12,8 @@ data/*
 output
 output/*
 renv
+!renv
 renv/**
+!renv/activate.R
 shiny
 shiny/*
