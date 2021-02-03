@@ -13,5 +13,6 @@ output
 output/*
 renv
 renv/**
+!renv/activate.R
 shiny
 shiny/*
