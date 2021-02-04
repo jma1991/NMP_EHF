@@ -17,3 +17,5 @@ renv/**
 !renv/activate.R
 shiny
 shiny/*
+slides/
+slides/*
