@@ -98,19 +98,6 @@
       "Source": "Bioconductor",
       "Hash": "7025417314cfb2f1be19919998874466"
     },
-    "Cairo": {
-      "Package": "Cairo",
-      "Version": "1.5-12.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "5f09ea90a07218b11c6430b7ca71fee7"
-    },
-    "ComplexHeatmap": {
-      "Package": "ComplexHeatmap",
-      "Version": "2.6.2",
-      "Source": "Bioconductor",
-      "Hash": "2a4e47ffd4549d1cd210b55b16c913f5"
-    },
     "DBI": {
       "Package": "DBI",
       "Version": "1.1.1",
@@ -205,20 +192,6 @@
       "Version": "1.42.0",
       "Source": "Bioconductor",
       "Hash": "2826edf1a5ff7d6ce991ec5ed918ec5f"
-    },
-    "GetoptLong": {
-      "Package": "GetoptLong",
-      "Version": "1.0.5",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "61fac01c73abf03ac72e88dc3952c1e3"
-    },
-    "GlobalOptions": {
-      "Package": "GlobalOptions",
-      "Version": "0.1.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "c3f7b221e60c28f5f3533d74c6fef024"
     },
     "HDF5Array": {
       "Package": "HDF5Array",
@@ -586,13 +559,6 @@
       "Repository": "CRAN",
       "Hash": "f61dbaec772ccd2e17705c1e872e9e7c"
     },
-    "circlize": {
-      "Package": "circlize",
-      "Version": "0.4.12",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "d9da72c977c87b686f013cec48acb898"
-    },
     "class": {
       "Package": "class",
       "Version": "7.3-18",
@@ -614,13 +580,6 @@
       "Repository": "CRAN",
       "Hash": "ebaa97ac99cc2daf04e77eecc7b781d7"
     },
-    "clue": {
-      "Package": "clue",
-      "Version": "0.3-58",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "60caed5942c61fcfcd3147b1575ccc0b"
-    },
     "cluster": {
       "Package": "cluster",
       "Version": "2.1.0",
@@ -634,13 +593,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "abea3384649ef37f60ef51ce002f3547"
-    },
-    "colourpicker": {
-      "Package": "colourpicker",
-      "Version": "1.1.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "fe0cb3d8854c168aef827aeab4b3b473"
     },
     "commonmark": {
       "Package": "commonmark",
@@ -1031,12 +983,6 @@
       "Repository": "CRAN",
       "Hash": "a525aba14184fec243f9eaec62fbed43"
     },
-    "iSEE": {
-      "Package": "iSEE",
-      "Version": "2.2.2",
-      "Source": "Bioconductor",
-      "Hash": "ea61b8248ad8cc173415d9fe3082afeb"
-    },
     "igraph": {
       "Package": "igraph",
       "Version": "1.2.6",
@@ -1230,13 +1176,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "e87a35ec73b157552814869f45a63aa3"
-    },
-    "miniUI": {
-      "Package": "miniUI",
-      "Version": "0.1.1.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "fec5f52652d60615fdb3957b3d74324a"
     },
     "minqa": {
       "Package": "minqa",
@@ -1557,26 +1496,12 @@
       "Source": "Bioconductor",
       "Hash": "9dee5e2185e9a498c7d910f6b3f33150"
     },
-    "rintrojs": {
-      "Package": "rintrojs",
-      "Version": "0.2.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "15a8768183fd609cee75e4789da27621"
-    },
     "rio": {
       "Package": "rio",
       "Version": "0.5.16",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "4a9aecbe83639be364de13ffe0671bcf"
-    },
-    "rjson": {
-      "Package": "rjson",
-      "Version": "0.2.20",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "7d597f982ee6263716b6a2f28efd29fa"
     },
     "rlang": {
       "Package": "rlang",
@@ -1692,47 +1617,12 @@
       "Repository": "CRAN",
       "Hash": "5bdd8140f48fc8e5d86bfc6197d4a544"
     },
-    "shape": {
-      "Package": "shape",
-      "Version": "1.4.5",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "58510f25472de6fd363d76698d29709e"
-    },
     "shiny": {
       "Package": "shiny",
       "Version": "1.6.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "6e3b6ae7fe02b5859e4bb277f218b8ae"
-    },
-    "shinyAce": {
-      "Package": "shinyAce",
-      "Version": "0.4.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "402073a8a045c9f5ea096ed94e01d9ce"
-    },
-    "shinyWidgets": {
-      "Package": "shinyWidgets",
-      "Version": "0.5.6",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "cfeab56e3bc9d470208c6e645744f532"
-    },
-    "shinydashboard": {
-      "Package": "shinydashboard",
-      "Version": "0.7.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "133639dc106955eee4ffb8ec73edac37"
-    },
-    "shinyjs": {
-      "Package": "shinyjs",
-      "Version": "2.0.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "9ddfc91d4280eaa34c2103951538976f"
     },
     "sitmo": {
       "Package": "sitmo",
