@@ -78,7 +78,7 @@ marker.palette <- c(
 )
 
 stage.palette <- c(
-  "LHF" = "#FF9DA7"
+  "EHF" = "#B07AA1"
 )
 ```
 
