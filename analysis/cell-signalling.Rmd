@@ -23,21 +23,27 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Packages
+```{r, include = FALSE}
+DT::datatable(matrix()) # Import datatable options, quietly
+```
 
 Load Bioconductor packages:
 
 ```{r}
-library(scater)
-library(scran)
 library(scuttle)
 ```
 
 Load CRAN packages:
 
 ```{r}
-library(ggforce)
-library(ggplot2)
+library(hues)
+library(circlize)
+```
+
+Load Github packages:
+
+```{r}
+library(CellChat)
 ```
 
 ## Data
@@ -48,205 +54,314 @@ Read experiment object:
 sce <- readRDS("output/09-cell-annotation.rds")
 ```
 
-Read human to mouse annotation table:
+Make feature names unique:
 
 ```{r}
-ann <- read.csv("data/hsapiens_mmusculus.csv")
+rownames(sce) <- uniquifyFeatureNames(
+  ID = rowData(sce)$gene_id,
+  names = rowData(sce)$gene_name
+)
 ```
 
-Subset annotation table to orthologous genes:
+Revalue label annotation:
 
 ```{r}
-ann <- subset(ann, mmusculus_homology_type == "ortholog_one2one")
+sce$label <- as.character(sce$cluster)
 ```
 
-Identify genes present in experiment object and annotation table:
+## Processing
+
+Create a CellChat object from a SingleCellExperiment object:
 
 ```{r}
-ids <- intersect(rowData(sce)$gene_id, ann$mmusculus_gene_id)
+cellchat <- createCellChat(object = sce, group.by = "label")
 ```
 
-Subset experiment object to shared genes:
+Set the ligand-receptor interaction database:
 
 ```{r}
-sce <- sce[match(ids, rowData(sce)$gene_id), ]
+cellchat@DB <- CellChatDB.mouse
 ```
 
-Subset annotation table to shared genes:
+Subset the expression data of signaling genes for saving computation cost:
 
 ```{r}
-ann <- ann[match(ids, ann$mmusculus_gene_id), ]
+cellchat <- subsetData(cellchat)
 ```
 
-Replace row names with human gene identifier:
+Identify over-expressed signaling genes associated with each cell group:
 
 ```{r}
-rownames(sce) <- ann$hsapiens_gene_id
+cellchat <- identifyOverExpressedGenes(cellchat)
 ```
 
-Create output directory:
+Identify over-expressed ligand-receptor interactions (pairs) within the used CellChatDB:
 
 ```{r}
-unlink("output/cellphonedb", recursive = TRUE); dir.create("output/cellphonedb")
+cellchat <- identifyOverExpressedInteractions(cellchat)
 ```
 
-Write normalized counts matrix to disk:
+Project gene expression data onto a protein-protein interaction network:
 
 ```{r}
-mat <- normalizeCounts(sce, log = FALSE)
-
-mat <- data.frame(Gene = rownames(mat), mat)
-
-write.csv(mat, file = "output/cellphonedb/counts.csv", quote = FALSE, row.names = FALSE)
+cellchat <- projectData(cellchat, PPI.mouse)
 ```
 
-Write column data frame to disk:
+Compute the communication probability/strength between any interacting cell groups:
 
 ```{r}
-dat <- data.frame(Cell = colnames(sce), cell_type = sce$cluster)
+cellchat <- computeCommunProb(cellchat)
+```
 
-write.csv(dat, file = "output/cellphonedb/meta.csv", quote = FALSE, row.names = FALSE)
+Compute the communication probability on signaling pathway level by summarizing all related ligands/receptors:
+
+```{r}
+cellchat <- computeCommunProbPathway(cellchat)
+```
+
+Calculate the aggregated network by counting the number of links or summarizing the communication probability:
+
+```{r}
+cellchat <- aggregateNet(cellchat)
+```
+
+Returns a data frame consisting of all the inferred cell-cell communications:
+
+```{r}
+net <- subsetCommunication(cellchat)
 ```
 
 ## Results
 
-Run CellPhoneDB analysis:
-
-```{bash, engine.opts = "-l"}
-conda activate cellphonedb
-
-cellphonedb method statistical_analysis \
-  --counts-data ensembl \
-  --threshold 0.1 \
-  --output-path output/cellphonedb \
-  --output-format csv \
-  --threads 4 \
-  output/cellphonedb/meta.csv \
-  output/cellphonedb/counts.csv
-```
-
-Read output files:
+Print interactive table of all the inferred cell-cell communications:
 
 ```{r}
-res <- list(
-  pvalues = read.csv("output/cellphonedb/pvalues.csv", header = TRUE),
-  means = read.csv("output/cellphonedb/means.csv", header = TRUE)
-)
+DT::datatable(net)
 ```
 
-Make interaction names in pvalues unique:
+Define chord diagram function for downstream visualization:
 
 ```{r}
-res$pvalues$id_cp_interaction <- make.unique(res$pvalues$id_cp_interaction)
+chordDiagram <- function(x, title = NULL) {
 
-res$pvalues$interacting_pair <- make.unique(res$pvalues$interacting_pair)
-```
+  ## Convert factors to strings
 
-Make interaction names in means unique:
+  x$source <- as.character(x$source)
+  
+  x$target <- as.character(x$target)
 
-```{r}
-res$means$id_cp_interaction <- make.unique(res$means$id_cp_interaction)
+  ## Create data frame with connections
 
-res$mean$interacting_pair <- make.unique(res$means$interacting_pair)
-```
-
-Reshape pvalues to long format:
-
-```{r}
-ind <- seq(from = which(colnames(res$pvalues) == "is_integrin") + 1, to = ncol(res$pvalues))
-
-res$pvalues <- reshape2::melt(res$pvalues, measure.vars = ind, variable.name = "comparison", value.name = "pvalue")
-```
-
-Reshape means to long format:
-
-```{r}
-ind <- seq(from = which(colnames(res$means) == "is_integrin") + 1, to = ncol(res$means))
-
-res$means <- reshape2::melt(res$means, measure.vars = ind, variable.name = "comparison", value.name = "mean")
-```
-
-Join pvalues and means results:
-
-```{r}
-res <- dplyr::inner_join(res$pvalues, res$means)
-```
-
-Define comparison variable:
-
-```{r}
-res$comparison <- sub("^X", "", res$comparison) # required for numeric cluster labels
-
-res$comparison_a <- sapply(strsplit(res$comparison, ".", fixed = TRUE), "[", 1)
-
-res$comparison_b <- sapply(strsplit(res$comparison, ".", fixed = TRUE), "[", 2)
-```
-
-Create significance variable:
-
-```{r}
-res$is_significant <- res$pvalue < 0.05
-```
-
-Create ranking variable:
-
-```{r}
-set.seed(1701)
-
-ind <- split(res$is_significant, res$id_cp_interaction)
-
-ind <- sapply(ind, sum)
-
-ind <- rank(-ind, ties.method = "random") # negative ranking
-
-res$rank <- ind[res$id_cp_interaction]
-```
-
-Define cluster variable:
-
-```{r}
-mat <- reshape2::acast(res, id_cp_interaction ~ comparison, value.var = "is_significant")
-
-num <- nrow(unique(mat))
-
-knn <- kmeans(mat, centers = num)
-
-res$cluster <- knn$cluster[res$id_cp_interaction]
-```
-
-Filter non-significant comparisons:
-
-```{r}
-res <- subset(res, is_significant == TRUE)
-```
-
-Plot results without effect size:
-
-```{r fig.width = 8, fig.height = 33.67}
-ggplot(res, aes(comparison, interacting_pair, shape = secreted)) + 
-  geom_point() + 
-  labs(x = "Comparison", y = "Interaction", shape = "Secreted") + 
-  facet_grid(rows = vars(cluster), cols = vars(comparison_a), scales = "free", space = "free") + 
-  theme_bw(base_size = 8) + 
-  theme(
-    legend.position = "bottom",
-    panel.grid = element_blank()
+  dat <- data.frame(
+    from = paste(x$source, x$ligand, sep = "."),
+    to = paste(x$target, x$receptor, sep = ".")
   )
+
+  ## Create connections annotation
+
+  ann <- setNames(
+    object = c(x$ligand, x$receptor),
+    nm = c(x$source, x$target)
+  )
+
+  ## Filter duplicated connections
+
+  ids <- paste(names(ann), ann, sep = ".")
+
+  ann <- ann[!duplicated(ids)]
+
+  ## Order connections by name and value
+
+  ids <- paste(names(ann), ann, sep = ".")
+
+  ann <- ann[order(ids)]
+
+  ## Create LR colour palette
+
+  ids <- unique(ann)
+
+  col <- iwanthue(n = length(ids))
+
+  names(col) <- ids
+
+  col <- col[ann]
+
+  names(col) <- paste(names(ann), ann, sep = ".")
+
+  ## Create prob colour palette
+
+  prob.colours <- rev(RColorBrewer::brewer.pal(10, "Spectral"))
+  prob.breaks <- seq(0, 1, along.with = prob.colours)
+  prob.palette <- colorRamp(prob.colours)
+  prob.palette <- rgb(prob.palette(x$prob)/255)
+
+  ## Plot chord diagram
+
+  circlize::chordDiagram(
+    x = dat,
+    grid.col = col,
+    transparency = 0.5,
+    col = "#00000000",
+    order = names(col),
+    directional = 1,
+    direction.type = "arrows",
+    annotationTrack = "grid",
+    preAllocateTracks = list(
+      list(track.height = uh(2,'mm')),
+      list(track.height = uh(12,'mm'))
+    ),
+    annotationTrackHeight = c(0.01, 0.01),
+    link.arr.col = prob.palette
+  )
+
+  ## Plot title
+
+  graphics::title(title, cex = 0.6)
+
+  ## Plot track region
+
+  circlize::circos.trackPlotRegion(
+    track.index = 2,
+    bg.border = 0,
+    panel.fun = function(x, y) {
+      xlim <- get.cell.meta.data("xlim")
+      ylim <- get.cell.meta.data("ylim")
+      sector.index <- ann[get.cell.meta.data("sector.numeric.index")]
+      circos.text(
+        x = mean(xlim),
+        y = mean(ylim),
+        sector.index,
+        facing = "clockwise",
+        niceFacing = TRUE,
+        cex = 0.7,
+        col = "black"
+      )
+    }
+  )
+
+  ## Create group colour palette
+
+  ids <- unique(names(ann))
+
+  col <- iwanthue(n = length(ids))
+
+  names(col) <- ids
+
+  ## Plot highlight sector
+
+  for (i in ids) {
+
+    df <- ann[names(ann) == i]
+
+    circlize::highlight.sector(
+      sector.index = paste(names(df), df, sep = "."),
+      track.index = 1,
+      col = col[i],
+      lwd = 1,
+      text = i,
+      text.vjust = '0.4cm',
+      niceFacing = TRUE
+    )
+
+  }
+
+  # Plot links legend
+  
+  col <- colorRamp2(breaks = prob.breaks, colors = prob.colours)
+
+  lgd <- ComplexHeatmap::Legend(at = c(0, 0.5, 1), col_fun = col, title = "Prob")
+
+  ComplexHeatmap::draw(lgd, x = unit(10, "mm"), y = unit(10, "mm"), just = c("left", "bottom"))
+
+  #
+
+  circos.clear()
+
+}
 ```
 
-Plot results with effect size:
+### Source {.tabset}
 
-```{r fig.width = 8, fig.height = 33.67}
-ggplot(res, aes(comparison, interacting_pair, colour = log2(mean + 0.001), size = -log10(pvalue + 0.001), shape = secreted)) + 
-  geom_point() + 
-  scale_colour_distiller(palette = "Reds", direction = 1) + 
-  labs(x = "Comparison", y = "Interaction", colour = "log2(Mean)", size = "-log10(P-value)", shape = "Secreted") + 
-  facet_grid(rows = vars(cluster), cols = vars(comparison_a), scales = "free", space = "free") + 
-  theme_bw(base_size = 8) + 
-  theme(
-    legend.position = "bottom",
-    panel.grid = element_blank()
+Plot chord diagram by source:
+
+```{r, fig.width = 7, fig.height = 7, results = "asis"}
+ids <- sort(unique(net$source))
+
+for (i in ids) {
+  
+  cat("####", i, "\n")
+  
+  chordDiagram(
+    x = subset(net, source == i), 
+    title = i
   )
+  
+  cat("\n\n")
+  
+}
+```
+
+### Target {.tabset}
+
+Plot chord diagram by target:
+
+```{r, fig.width = 7, fig.height = 7, results = "asis"}
+ids <- sort(unique(net$target))
+
+for (i in ids) {
+  
+  cat("####", i, "\n")
+  
+  chordDiagram(
+    x = subset(net, target == i), 
+    title = i
+  )
+  
+  cat("\n\n")
+  
+}
+```
+
+### Annotation {.tabset}
+
+Plot chord diagram by annotation:
+
+```{r, fig.width = 7, fig.height = 7, results = "asis"}
+ids <- sort(unique(net$annotation))
+
+for (i in ids) {
+  
+  cat("####", i, "\n")
+  
+  chordDiagram(
+    x = subset(net, annotation == i), 
+    title = i
+  )
+  
+  cat("\n\n")
+  
+}
+```
+
+### Pathway {.tabset}
+
+Plot chord diagram by pathway:
+
+```{r, fig.width = 7, fig.height = 7, results = "asis"}
+ids <- sort(unique(net$pathway_name))
+
+for (i in ids) {
+  
+  cat("####", i, "\n")
+  
+  chordDiagram(
+    x = subset(net, pathway_name == i), 
+    title = i
+  )
+  
+  cat("\n\n")
+  
+}
 ```
 
 ## Summary
